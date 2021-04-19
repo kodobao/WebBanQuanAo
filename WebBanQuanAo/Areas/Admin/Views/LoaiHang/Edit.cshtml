@@ -1,0 +1,56 @@
+﻿@model Models.EntityFramework.LOAIHANG
+
+@{
+    ViewBag.Title = "Sửa loại hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <h1>Sửa loại hàng</h1>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ma)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.loai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.loai, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.loai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.maloaiao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @*@Html.EditorFor(model => model.maloaiao, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("maloaiao", ViewBag.MaLoaiAo as SelectList, "------------ Select ------------ ", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.maloaiao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.sapxep, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.sapxep, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.sapxep, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-6">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

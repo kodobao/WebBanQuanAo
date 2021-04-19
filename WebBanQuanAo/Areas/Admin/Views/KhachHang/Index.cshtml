@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<Models.EntityFramework.KHACHHANG>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Danh sách khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem danh sách khách hàng</h1>
+    </div>
+}
+
+<div class="row">
+    @using (@Html.BeginForm("Index", "KhachHang", FormMethod.Get))
+    {
+        <div class="col-md-5 ">
+            <div class="input-group">
+                <input type="text" name="searchStr" class="form-control" placeholder="Từ khóa" value="@ViewBag.searchStr" />
+                <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+            </div>
+        </div>
+    }
+</div>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            Tên khách hàng
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Tên đăng nhập
+        </th>
+        <th>
+            Mật khẩu
+        </th>
+        <th>
+            Trạng thái tài khoản
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenkhachhang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.diachi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dienthoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DropDownList("trangthai", new List<SelectListItem>()
+                {
+                    new SelectListItem() { Text= "Hoạt động", Value = "1", Selected=true },
+                    new SelectListItem() { Text= "Đang bị khóa", Value = "0"}
+                }, "Select ...")
+                
+            </td>
+            <td>
+                <a href="/Admin/KhachHang/Details/@item.ma">
+                    <i class="fa fa-info-circle" aria-hidden="true">   </i>
+                </a>
+                <a href="/Admin/KhachHang/Delete/@item.ma">
+                    <i class="fa fa-trash-o" aria-hidden="true">   </i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchStr = @ViewBag.searchStr }))

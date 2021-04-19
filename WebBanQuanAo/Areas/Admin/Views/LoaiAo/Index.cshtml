@@ -1,0 +1,86 @@
+﻿
+@model PagedList.IPagedList<Models.EntityFramework.LOAIAO>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Danh sách loại áo";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@section Header{
+    <div class="page-header">
+        <h1>Danh sách loại áo</h1>
+    </div>
+}
+<br />
+
+<div class="row">
+    @using (@Html.BeginForm("Index", "LoaiAo", FormMethod.Get))
+    {
+        <div class="col-md-5 ">
+            <div class="input-group">
+                <input type="text" name="searchStr" class="form-control" placeholder="Từ khóa" value="@ViewBag.searchStr" />
+                <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+            </div>
+        </div>
+    }
+    <div class="col-md-2">
+       @Html.ActionLink("Tạo mới", "Create", "LoaiAo", new { @class = "btn btn-primary" })
+    </div>
+</div>
+<br />
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            Tên loại áo
+        </th>
+        <th>
+            Đường dẫn
+        </th>
+        <th>
+            MetaTitle
+        </th>
+        <th>
+            Sắp xếp
+        </th>
+        <th>
+            Chức năng
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.loaiao1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.link)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.metatitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sapxep)
+        </td>
+        <td>
+            <a href="/Admin/LoaiAo/Edit/@item.ma">
+                <i class="fa fa-pencil" aria-hidden="true">   </i>
+            </a>
+            <a href="/Admin/LoaiAo/Details/@item.ma">
+                <i class="fa fa-info-circle" aria-hidden="true">   </i>
+            </a>
+            <a href="/Admin/LoaiAo/Delete/@item.ma">
+                <i class="fa fa-trash-o" aria-hidden="true">   </i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchStr = @ViewBag.searchStr }))

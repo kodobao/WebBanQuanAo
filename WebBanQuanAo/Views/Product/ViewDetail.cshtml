@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Sản phẩm - Xem chi tiết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lsSP = (List<Models.EntityFramework.MATHANG>)ViewBag.lsSanPhamCungLoai;
+    
+}
+@model Models.EntityFramework.MATHANG
+
+
+@section Category {
+    @{Html.RenderAction("Category", "Product");}
+}
+
+
+<div class="col-md-9">
+    <div class="row">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="~/Data/images/@Model.hinhanh" /></div>
+                            <div class="tab-pane" id="pic-2"><img src="~/Data/images/@Model.hinhanh" /></div>
+                            <div class="tab-pane" id="pic-3"><img src="~/Data/images/@Model.hinhanh" /></div>
+                            <div class="tab-pane" id="pic-4"><img src="~/Data/images/@Model.hinhanh" /></div>
+                            <div class="tab-pane" id="pic-5"><img src="~/Data/images/@Model.hinhanh" /></div>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="~/Data/images/@Model.hinhanh" /></a></li>
+                            <li><a data-target="#pic-2" data-toggle="tab"><img src="~/Data/images/@Model.hinhanh" /></a></li>
+                            <li><a data-target="#pic-3" data-toggle="tab"><img src="~/Data/images/@Model.hinhanh" /></a></li>
+                            <li><a data-target="#pic-4" data-toggle="tab"><img src="~/Data/images/@Model.hinhanh" /></a></li>
+                            <li><a data-target="#pic-5" data-toggle="tab"><img src="~/Data/images/@Model.hinhanh" /></a></li>
+                        </ul>
+
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">@Model.tenhang</h3>
+                        <div class="rating">
+                            <div class="stars">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                            <span class="review-no">@Model.luotxem lượt xem</span>
+                        </div>
+                        <p class="product-description">@Model.mota</p>
+                        <h4 class="price">current price: <span>@(Model.giaban.HasValue ? Model.giaban.Value.ToString("N0") : "Liên hệ") đ</span></h4>
+                        <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                        <h5 class="sizes">
+                            Kích thước:
+                            <span class="size" data-toggle="tooltip" title="small">S</span>
+                            <span class="size" data-toggle="tooltip" title="medium">M</span>
+                            <span class="size" data-toggle="tooltip" title="large">L</span>
+                            <span class="size" data-toggle="tooltip" title="xtra large">XL</span>
+                        </h5>
+                        <h5 class="colors">
+                            Màu: <span>@Model.mausac</span>
+                        </h5>
+                        <div class="action">
+                            <a class="add-to-cart btn btn-default" href="@Url.Action("AddItemCart", "Cart", new { @id = Model.ma})">Đặt mua</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div>
+            <ol class="breadcrumb">
+                <li><a href="#">Sản phẩm cùng loại</a></li>
+            </ol>
+        </div>
+        <br />
+        <!-- /.row -->
+        <div class="row">
+            @foreach (var item in lsSP.Take(3))
+            {
+                <!-- /.col -->
+                <div class="col-md-4 text-center col-sm-6 col-xs-6">
+                    <div class="thumbnail product-box">
+                        <a href="/xem-chi-tiet/@item.metatitle/@item.ma"><img src="~/Data/images/@item.hinhanh" alt="" /></a>
+                        <div class="caption">
+                            <h3><a href="#">@item.tenhang</a></h3>
+                        </div>
+                    </div>
+                </div>
+            <!-- /.col -->
+            }
+
+        </div>
+        <!-- /.row -->
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+

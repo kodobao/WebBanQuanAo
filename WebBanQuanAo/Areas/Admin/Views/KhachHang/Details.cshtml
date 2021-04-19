@@ -1,0 +1,86 @@
+﻿@model Models.EntityFramework.KHACHHANG
+
+@{
+    ViewBag.Title = "Khách hàng - Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem thông tin khách hàng</h1>
+    </div>
+}
+
+<div>
+    <h4>KHACHHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tenkhachhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenkhachhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.diachi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diachi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dienthoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dienthoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </dt>
+
+        <dd>
+            @if (Model.trangthai == 1)
+            {
+                @Html.Raw("<span>Đang hoạt động</span>")
+            }
+            else
+            {
+                @Html.Raw("<span>Khóa</span>")
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ma }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

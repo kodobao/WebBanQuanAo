@@ -1,0 +1,98 @@
+﻿@{
+    var lsAoDoiTuyen = (List<Models.EntityFramework.MATHANG>)ViewBag.AoDoiTuyen;
+    var lsAoCauLacBo = (List<Models.EntityFramework.MATHANG>)ViewBag.AoCauLacBo;
+    var lsAoTuChon = (List<Models.EntityFramework.MATHANG>)ViewBag.AoTuChon;
+    var lsAoKhuyeMai = (List<Models.EntityFramework.MATHANG>)ViewBag.AoKhuyenMai;
+}
+
+
+<div class="container" id="Slide123">
+
+    <div class="row">
+        <!--Slide-->
+        <div class="col-md-9">
+            <div class="well well-lg offer-box text-center">
+
+
+                Today's Offer : <i class="fa fa-star" aria-hidden="true"></i>  40 % off  on purchase of $ 2,000 and above till 24 dec !
+
+
+            </div>
+            <div class="main box-border">
+                <div id="mi-slider" class="mi-slider">
+                    <ul>
+                        @foreach (var item in lsAoDoiTuyen.Take(4))
+                        {
+                            var url = "/xem-chi-tiet/" + item.metatitle + "/" + item.ma;
+                            <li>
+                                <a href="/xem-chi-tiet/@item.metatitle/@item.ma">
+                                    <img src="~/Data/images/@item.hinhanh" alt="@item.tenhang">
+                                    <h4>@item.tenhang</h4>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+
+                    <ul>
+                        @foreach (var item in lsAoCauLacBo.Take(4))
+                        {
+                            var url = "/xem-chi-tiet/" + item.metatitle + "/" + item.ma;
+                            <li>
+                                <a href="@url">
+                                    <img src="~/Data/images/@item.hinhanh" alt="@item.tenhang">
+                                    <h4>@item.tenhang</h4>
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                    <ul>
+                        @foreach (var item in lsAoTuChon.OrderByDescending(x => x.soluong).Take(4))
+                        {
+                            var url = "/xem-chi-tiet/" + item.metatitle + "/" + item.ma;
+                            <li>
+                                <a href="@url">
+                                    <img src="~/Data/images/@item.hinhanh" alt="@item.tenhang">
+                                    <h4>@item.tenhang</h4>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+
+                    <nav>
+                        <a href="#">Áo đội tuyển</a>
+                        <a href="#">Áo câu lạc bộ</a>
+                        <a href="#">Áo tự chọn</a>
+                    </nav>
+                </div>
+
+            </div>
+            <br />
+        </div>
+
+        <!-- Khuyen mai-->
+        <div class="col-md-3 text-center">
+            @foreach (var item in lsAoKhuyeMai)
+            {
+                var url = "/xem-chi-tiet/" + item.metatitle + "/" + item.ma;
+                <div class="col-md-12 col-sm-6 col-xs-6">
+                    <div class="offer-text">
+                        Giảm giá 30%
+                    </div>
+                    <div class="thumbnail product-box">
+                        <img src="~/Data/images/@item.hinhanh" alt="@item.tenhang">
+                        <div class="caption">
+                            <h3><a href="@url">@item.tenhang</a></h3>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+
+    </div>
+
+</div>

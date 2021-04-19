@@ -1,0 +1,53 @@
+﻿
+
+@model List<Models.EntityFramework.LOAIHANG>
+
+
+<!-- Danh mục áo-->
+<div class="col-md-3">
+
+    <!-- Áo đội tuyển-->
+    <div>
+        <a href="@Url.Action("TypeCategory", "Product", new {@id=1 })" class="list-group-item active list-group-item-info">
+            Áo đội tuyển
+        </a>
+        <div class="list-group">
+            @foreach (var item in Model)
+            {
+                //var url = "/loai-hang/" + item.link;
+                if (@item.maloaiao == 1)
+                {
+                    <a href="@Url.Action("CategoryType", "Product", new {@id=item.ma})" class="list-group-item" name="@item.ma">
+                        @item.loai
+                    </a>
+                }
+
+            }
+        </div>
+    </div>
+
+    <!-- Áo câu lạc bộ -->
+    <div>
+        <a href="@Url.Action("TypeCategory", "Product", new { @id = 2 })" class="list-group-item active list-group-item-success">
+            Áo câu lạc bộ
+        </a>
+        <div class="list-group">
+
+            @foreach (var item in Model)
+            {
+                if (@item.maloaiao == 2)
+                {
+
+                    <a href="@Url.Action("CategoryType", "Product", new {@id=item.ma})" class="list-group-item">
+                        @item.loai
+                    </a>
+                }
+
+            }
+        </div>
+    </div>
+
+
+
+</div>
+

@@ -1,0 +1,74 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title {
+            color: #5488c7;
+            font-size: 5rem;
+            text-align: center;
+        }
+
+        .panel-heading {
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .logo {
+            color: #5488c7;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .panel {
+            border-color: #DDD;
+            margin-bottom: 20px;
+            background-color: #FFF;
+        }
+
+        .panel-heading {
+            color: #333;
+            padding: 10px 15px;
+            border-bottom: 1px dashed #DDD;
+        }
+
+        .panel-body {
+            padding: 15px;
+        }
+    </style>
+    <title>Lỗi</title>
+</head>
+<body>
+    <div class="container">
+        <div class="panel">
+            <div class="panel-heading">
+                <a href="/Home/Index" class="logo">DIGI Shop</a> IS ENCOUNTERING SOME PROBLEMS.
+            </div>
+            <div class="panel-body">
+                <div class="title">404 - Page Not Found.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

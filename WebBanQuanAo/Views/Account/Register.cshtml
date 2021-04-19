@@ -1,0 +1,62 @@
+﻿@model WebBanQuanAo.Models.RegisterModel
+
+@{
+    Layout = "~/Views/Account/_LayoutAccount.cshtml";
+    ViewBag.Title = "Đăng ký tài khoản";
+    var success = ViewBag.Success;
+}
+
+<h1>Đăng ký thành viên</h1>
+<div class="main-agileits">
+    <div class="contact-w3-agileits">
+        @if (@success != null)
+        {
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Thông báo</strong> @success
+            </div>
+        }
+
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-dange" })
+            <div class="form-sub-w3ls">
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @placeholder = "Tên đăng nhập", @type = "text", @required = "" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-dange" })
+
+            </div>
+            <div class="form-sub-w3ls">
+                @Html.EditorFor(model => model.tenkhachhang, new { htmlAttributes = new { @placeholder = "Họ và tên", @type = "text", @required = "" } })
+                @Html.ValidationMessageFor(model => model.tenkhachhang, "", new { @class = "text-dange" })
+            </div>
+            <div class="form-sub-w3ls">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @placeholder = "Email", @class = "mail", @type = "email", @required = "" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-dange" })
+            </div>
+            <div class="form-sub-w3ls">
+                @Html.EditorFor(model => model.diachi, new { htmlAttributes = new { @placeholder = "Địa chỉ", @type = "text", @required = "" } })
+                @Html.ValidationMessageFor(model => model.diachi, "", new { @class = "text-dange" })
+            </div>
+            <div class="form-sub-w3ls">
+                @Html.EditorFor(model => model.dienthoai, new { htmlAttributes = new { @placeholder = "Điện thoại", @type = "text", @required = "" } })
+                @Html.ValidationMessageFor(model => model.dienthoai, "", new { @class = "text-dange" })
+            </div>
+            <div class="form-sub-w3ls">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @placeholder = "Mật khẩu", @type = "password", @required = "" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-dange" })
+            </div>
+            <div class="form-sub-w3ls">
+                @Html.EditorFor(model => model.confirmpassowrd, new { htmlAttributes = new { @placeholder = "Nhập lại mật khẩu", @type = "password", @required = "" } })
+                @Html.ValidationMessageFor(model => model.confirmpassowrd, "", new { @class = "text-dange" })
+            </div>
+
+            <div class="submit-w3l">
+                <input type="submit" value="Register">
+            </div>
+        }
+
+    </div>
+
+</div>

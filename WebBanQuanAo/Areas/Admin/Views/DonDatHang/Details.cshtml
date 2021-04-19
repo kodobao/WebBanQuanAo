@@ -1,0 +1,78 @@
+﻿@model Models.EntityFramework.DONDATHANG
+
+@{
+    ViewBag.Title = "Đơn đặt hàng - Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem chi tiết </h1>
+    </div>
+}
+
+<div>
+    <h4>Đơn đặt hàng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaydathang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaydathang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaygiaohang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaygiaohang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaychuyenhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaychuyenhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noigiaohang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noigiaohang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.makhachhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.makhachhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </dt>
+
+        <dd>
+            @if (Model.trangthai == 1)
+            {
+                @Html.Raw("<span>Đã thanh toán</span>")
+            }
+            else
+            {
+                @Html.Raw("<span>Chưa thanh toán</span>")
+            }
+            
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

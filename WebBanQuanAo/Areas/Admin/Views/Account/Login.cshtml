@@ -1,0 +1,67 @@
+﻿@{
+    Layout = null;
+}
+
+@model WebBanQuanAo.Areas.Admin.Models.AccountModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Đăng nhập</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Asset/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- MetisMenu CSS -->
+    <link href="~/Asset/Admin/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/Asset/Admin/dist/css/sb-admin-2.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+
+    <link href="~/fonts/css/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Quản trị Admin</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(false, "", new { @class = " text-danger" })
+                            <div class="form-group">
+                                @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Tên đăng nhập", @autofocus = "autofocus" })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Mật khẩu", @type="password", @value="" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                                <!-- Change this to a button or input when using this as a form -->
+                            <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="~/Asset/Admin/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Asset/Admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Asset/Admin/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Asset/Admin/dist/js/sb-admin-2.js"></script>
+</body>
+</html>

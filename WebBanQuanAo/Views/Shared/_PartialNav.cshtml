@@ -1,0 +1,68 @@
+﻿
+@using WebBanQuanAo.Common
+
+@{
+    var session = (WebBanQuanAo.Common.UserLogin)Session[CommonContants.USER_SESSION];
+    var cout = Session[CommonContants.COUNT_CART_SESSION];
+}
+
+<div class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DIGI Shop</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/gio-hang">
+                        
+                            Giỏ hàng <strong> @cout </strong>
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </a>
+                </li>
+                @if (session != null)
+                {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Chào @session.UserName
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @*<li><a href="/thong-tin-tai-khoan">Thông tin tài khoản</a></li>*@
+                            <li><a href="/lich-su-giao-dich">Lịch sử giao dịch</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Account/Logout">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+
+
+                }
+                else
+                {
+                    <li>
+                        <a href="/dang-ky">
+                            Đăng ký
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/dang-nhap">
+                            Đăng nhập
+                        </a>
+                    </li>
+                }
+
+
+            </ul>
+
+
+
+        </div>
+    </div>
+</div>
+

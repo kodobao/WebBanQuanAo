@@ -1,0 +1,61 @@
+﻿@model Models.EntityFramework.LOAIAO
+
+@{
+    ViewBag.Title = "Loại áo - Xóa";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1> Xóa loại áo</h1>
+    </div>
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LOAIAO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.loaiao1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loaiao1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.link)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.link)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.metatitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.metatitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sapxep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sapxep)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

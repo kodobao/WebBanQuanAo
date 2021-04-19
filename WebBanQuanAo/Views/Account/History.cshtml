@@ -1,0 +1,76 @@
+﻿@model List<WebBanQuanAo.Models.HistoryModel>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+<style>
+    .table-responsive{
+        margin-top:25px;
+
+    }
+</style>
+
+
+<div class="container">
+    <div class="page-header">
+        <h1>Lịch sử giao dịch</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" class="form-control" name="search" placeholder="Tìm kiếm">
+        </div>
+        @*<div class="col-md-2 col-md-offset-7">
+            <a class="btn btn-danger">Xóa lịch sử</a>
+        </div>*@
+    </div>
+    <div class="row">
+        
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Ngày đặt</th>
+                        <th>Giá</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>@item.SanPham</td>
+                            <td>@item.SoLuong</td>
+                            <td>@item.NgayDat</td>
+                            <td>@(item.Gia.HasValue?item.Gia.Value.ToString("N0"):"Liên hệ")</td>
+                            <td>@if (item.TrangThai == 1)
+                                {
+                                    <span class="label label-success">Đã giao hàng</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-warning">Chưa giao hàng</span>
+                                }
+                                
+                            </td>
+                        </tr>
+                    }
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="text-center">
+            @Html.PagedListPager(Model, page => Url.Action("History", page))
+        </div>
+    </div>*@
+</div>

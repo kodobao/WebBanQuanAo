@@ -1,0 +1,32 @@
+﻿@model WebBanQuanAo.Models.LoginModel
+
+@{
+    Layout = "~/Views/Account/_LayoutAccount.cshtml";
+    ViewBag.Title = "Đăng nhập";
+}
+
+
+<h1>Tài khoản</h1>
+<div class="main-agileits">
+    <!--form-stars-here-->
+    <div class="contact-w3-agileits">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-dange" })
+            <div class="form-sub-w3">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @placeholder = "Tên đăng nhập", @type = "text", @required = "" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-dange" })
+            </div>
+            <div class="form-sub-w3">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @placeholder = "Mật khẩu", @type = "password", @required = "" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-dange" })
+            </div>
+
+            <div class="submit-w3l">
+                <input type="submit" value="Đăng nhập">
+            </div>
+        }
+    </div>
+    <!--//form-ends-here-->
+</div>

@@ -1,0 +1,128 @@
+﻿@model Models.EntityFramework.MATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem chi tiết mặt hàng</h1>
+    </div>
+}
+
+<div>
+    <h4>MATHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hinhanh)
+        </dt>
+
+        <dd>
+            <img alt="@Model.tenhang" src="~/Data/images/@Model.hinhanh">
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tenhang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tenhang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soluong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soluong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mausac)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mausac)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kichthuoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kichthuoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.maloaihang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maloaihang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaynhap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaynhap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.metatitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.metatitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giaban)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giaban)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giagoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.giagoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.luotxem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.luotxem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.trangthai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.trangthai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mota)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ma }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,64 @@
+﻿@model List<Models.EntityFramework.CHITIETDATHANG>
+
+@{
+    ViewBag.Title = "Chi tiết đặt hàng - Xem chi tiết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem chi tiết đặt hàng</h1>
+    </div>
+}
+
+<table class="table table-hover table-striped">
+    <tr>
+        <th>
+            Số hóa đơn
+        </th>
+        <th>
+            Mã hàng
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá bán
+        </th>
+        <th>
+            Chức năng
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.sohoadon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mahang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giaban)
+            </td>
+            <td>
+                <a href="/Admin/MatHang/Details/@item.mahang">
+                    <i class="fa fa-info-circle" aria-hidden="true">   </i>
+                </a>
+                <a href="/Admin/MatHang/Delete/@item.mahang">
+                    <i class="fa fa-trash-o" aria-hidden="true">   </i>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

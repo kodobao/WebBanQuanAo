@@ -1,0 +1,75 @@
+﻿@model PagedList.IPagedList<Models.EntityFramework.CHITIETDATHANG>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Chi tiết đặt hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <div class="page-header">
+        <h1>Xem danh sách chi tiết đặt hàng</h1>
+    </div>
+}
+
+<div class="row">
+    @using (@Html.BeginForm("Index", "ChiTietDatHang", FormMethod.Get))
+    {
+        <div class="col-md-5 ">
+            <div class="input-group">
+                <input type="text" name="searchStr" class="form-control" placeholder="Từ khóa" value="@ViewBag.searchStr" />
+                <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+            </div>
+        </div>
+    }
+</div>
+<br />
+
+
+<table class="table">
+    <tr>
+        <th>
+            Số hóa đơn
+        </th>
+        <th>
+            Mã hàng
+        </th>
+        <th>
+            Số lượng
+        </th>
+        <th>
+            Giá bán
+        </th>
+        <th>
+            Chức năng
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sohoadon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mahang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soluong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.giaban)
+        </td>
+        <td>
+            <a href="/Admin/ChiTietDatHang/Details/@item.sohoadon">
+                <i class="fa fa-info-circle" aria-hidden="true">   </i>
+            </a>
+            <a href="/Admin/ChiTietDatHang/Delete/@item.sohoadon">
+                <i class="fa fa-trash-o" aria-hidden="true">   </i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchStr = @ViewBag.searchStr }))

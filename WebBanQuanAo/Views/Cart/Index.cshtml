@@ -1,0 +1,148 @@
+﻿@using WebBanQuanAo.Common;
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var count = ViewBag.Count;
+    var total = ViewBag.Total;
+
+
+    var user = Session[CommonContants.USER_SESSION];
+}
+
+@model List<WebBanQuanAo.Models.CartModel>
+
+@section jsFooter {
+    <script src="/Asset/Client/Cart/jsCart/jsCart.js"></script>
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+
+            @if (count > 0)
+            {
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th class="text-center">Giá</th>
+                            <th class="text-center">Tổng tiền</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-sm-8 col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left" href="#"> <img alt="@item.SanPham.tenhang" class="media-object" src="~/Data/images/@item.SanPham.hinhanh" style="width: 72px; height: 72px;"> </a>
+                                        <div class="media-body">
+                                            <h4 class="media-heading"><a href="#">@item.SanPham.tenhang</a></h4>
+                                            <span>Trạng thái: </span><span class="text-success">
+                                                <strong>
+                                                @if (item.SanPham.trangthai == true) 
+                                                { 
+                                                    <span>Còn hàng</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>Hết hàng</span>
+                                                }
+                                                </strong>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                @using (@Html.BeginForm("Edit", "Cart", new { @id = item.SanPham.ma }))
+                                {
+                                    <td class="col-sm-1 col-md-1" style="text-align: center">
+                                        <input type="text" class="form-control txtquantity" name="SoLuong" value="@item.SoLuong" data-id="@item.SanPham.ma">
+                                    </td>
+                                    <td class="col-sm-1 col-md-1 text-center"><strong>@(item.SanPham.giaban.HasValue ? item.SanPham.giaban.Value.ToString("N0") : "Liên hệ") đ</strong></td>
+                                    <td class="col-sm-1 col-md-1 text-center"><strong>@(item.TongTien().ToString("N0")) đ</strong></td>
+                                    <td class="col-sm-1 col-md-1">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="fa fa-refresh" aria-hidden="true"></i> Cập nhập
+                                        </button>
+                                        <a href="/xoa-san-pham/@item.SanPham.ma" class="btn btn-danger">
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i> Xóa
+                                        </a>
+                                    </td>
+                                }
+                                
+                            </tr>
+                        }
+
+
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h5>Giá</h5></td>
+                            <td class="text-right"><h5><strong>@(total.ToString("N0")) đ</strong></h5></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h5>Phí giao hàng</h5></td>
+                            <td class="text-right"><h5><strong>15,000 đ</strong></h5></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td><h3>Tổng tiền</h3></td>
+                            <td class="text-right"><h3><strong>@((total + 15000).ToString("N0")) đ</strong></h3></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="/huy-gio-hang" class="btn btn-danger">
+                                    Hủy
+                                </a>
+                            </td>
+                            <td>   </td>
+                            <td>
+                                @*<button class="btn btn-default" id="btnCapNhat">
+                                    <i class="fa fa-refresh" aria-hidden="true"></i> Cập nhật
+                                </button>*@
+                            </td>
+                            <td>
+                                <a href="/tiep-tuc-mua" class="btn btn-default">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Tiếp tục mua
+                                </a>
+                            </td>
+                            <td>
+                                <a href="/thanh-toan" class="btn btn-success">
+                                    Thanh toán <i class="fa fa-paypal" aria-hidden="true"></i>
+                                </a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    @if (ViewBag.Success != null)
+                    {
+                        @Html.Raw("<strong>Thông báo!</strong> Giao dịch thành công.")
+                    }
+                    else
+                    {
+                        @Html.Raw("<strong>Thông báo!</strong> Bạn chưa có sản phẩm trong giỏ.")
+                    }
+
+                </div>
+
+            }
+
+        </div>
+    </div>
+</div>
+
